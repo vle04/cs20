@@ -90,6 +90,7 @@ ul#nav li {
   flex: 0 0 300px;
   border: 1px solid #7d666d;
   padding-top: 10px;
+  overflow: visible;
 }
 .box-title {
   color: #7d666d;
