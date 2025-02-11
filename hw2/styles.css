@@ -1,0 +1,228 @@
+html, body {
+  margin: 0;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+header {
+  color: #7d666d;
+  padding: 15px 20px;
+  text-align: center;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  background-color: #ffe5d9;
+}
+ul#nav {
+  font-size: 22px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 10px;
+  list-style-type: none;
+}
+ul#nav a {
+  color: #7d666d;
+  display: inline-block;
+  text-decoration: none;
+}
+ul#nav a:hover {
+  color: #f4acb7;
+}
+ul#nav li {
+  display: inline-block;
+}
+.main-img {
+  width: 100%;
+  object-fit: cover;
+  object-position: 40% 40%;
+  display: block; 
+  opacity: 0.5;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+}
+.img-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+}
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #7d666d;
+  font-size: 28px;
+  font-weight: bold;
+}
+.discover-text {
+  padding: 20px;
+  font-size: 24px;
+  text-decoration: none;
+  display: inline-block;
+  color: #7d666d;
+}
+.myboxes {
+  display: flex;
+  justify-content: space-around;
+  overflow-x: auto;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  white-space: nowrap;
+}
+.myboxes::-webkit-scrollbar {
+  display: none;
+}
+.box {
+  background-color: white;;
+  scroll-snap-align: center;
+  width: 300px;
+  height: 200px;
+  text-align: center;
+  box-sizing: border-box;
+  margin: 0 10px;
+  border-radius: 10px;
+  flex: 0 0 300px;
+  border: 1px solid #7d666d;
+  padding-top: 10px;
+}
+.box-title {
+  color: #7d666d;
+}
+.box-user {
+  color: #c6b4b9;
+  margin-bottom: 10px;
+}
+.box img {
+  width: 100%;
+  height: 75%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+footer {
+  color: #7d666d;
+  padding: 15px 20px;
+  text-align: center;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 10px;
+  margin-top: auto;
+}
+ul#foot {
+  font-size: 15px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 10px;
+  list-style-type: none;
+}
+ul#foot a {
+  color: #7d666d;
+  display: inline-block;
+  text-decoration: none;
+}
+ul#foot a:hover {
+  color: #f4acb7;
+}
+ul#foot li {
+  display: inline-block;
+}
+h1#title {
+  padding-top: 20px;
+  text-align: center;
+  color: #7d666d;
+}
+p#body-text {
+  text-align: center;
+  margin-inline: 50px;
+  color: #7d666d;
+  font-size: 20px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 300px;
+  margin: 0 auto;
+}
+label {
+  font-weight: bold;
+  color: #7d666d;
+}
+button {
+  background-color: #7d666d;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 323px;
+}
+button:hover {
+  background-color: #f4acb7;
+  transition: 0.3s;
+}
+input, textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.profile-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  text-align: center;
+}
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+.username {
+  font-size: 22px;
+  color: #7d666d;
+  margin: 5px 0;
+}
+.bio {
+  color: #c6b4b9;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+.info {
+  font-size: 14px;
+  color: #7d666d;
+  margin-bottom: 15px;
+}
+.edit-profile {
+  background-color: #7d666d;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.edit-profile:hover {
+  background-color: #f4acb7;
+}
