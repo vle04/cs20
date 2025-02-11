@@ -75,6 +75,7 @@ ul#nav li {
   scrollbar-width: none;
   white-space: nowrap;
   overflow-y: hidden;
+  height: auto;
 }
 .myboxes::-webkit-scrollbar {
   display: none;
