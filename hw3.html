@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment 3: Joe's Hotdogs</title>
+  </head>
+  <body>
+    <h1 id="pgTitle">Welcome to Joe's Hotdog Stand!</h1>
+    <hr />
+    <script>
+      // constants to store the price of each item
+      const PRICE_HOTDOG = 4.99;
+      const PRICE_FRIES = 3.99;
+      const PRICE_SODA = 1.79;
+
+      // ask user how many of each item they want
+      numDogs = parseInt(prompt("How many hotdogs would you like?")) || 0;
+      numFries = parseInt(prompt("How many fries would you like?")) || 0;
+      numSoda = parseInt(prompt("How many sodas would you like?")) || 0;
+
+      // compute total prices for each item
+      totalDogs = numDogs * PRICE_HOTDOG;
+      totalFries = numFries * PRICE_FRIES;
+      totalSodas = numSoda * PRICE_SODA;
+
+      document.write(numDogs + " Hotdog(s): $" + showMoney(totalDogs) + "<br>");
+      document.write(
+        numFries + " French Fries: $" + showMoney(totalFries) + "<br>"
+      );
+      document.write(numSoda + " Soda(s): $" + showMoney(totalSodas) + "<br>");
+
+      // calculate subtotal
+      subtotal = totalDogs + totalFries + totalSodas;
+      document.write("<br>Subtotal: $" + showMoney(subtotal));
+
+      // apply 10% discount if order is at least $30 before tax
+      discount = 0;
+      if (subtotal >= 30) {
+        discount = subtotal * 0.1;
+        console.log(discount);
+        subtotal -= discount;
+      }
+      document.write(
+        "<br>Joe's special offer (10% off $30+ Purchases): $" +
+          showMoney(discount)
+      );
+      document.write("<br>New Subtotal: $" + showMoney(subtotal));
+
+      // calculate tax
+      tax = subtotal * 0.0625;
+      subtotal += tax;
+      document.write("<br><br>Tax: $" + showMoney(tax));
+      document.write("<br>Final Total: $" + showMoney(subtotal));
+
+      // returns a string of a float number rounded exactly 2 places
+      function showMoney(amount) {
+        rounded = parseFloat(Math.round(amount * 100));
+        dollars = Math.floor(rounded / 100);
+        cents = rounded % 100;
+        return dollars + "." + (cents > 10 ? cents : "0" + cents);
+      }
+    </script>
+  </body>
+</html>
