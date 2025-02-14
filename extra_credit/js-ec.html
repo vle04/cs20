@@ -1,0 +1,109 @@
+<html>
+  <head></head>
+  <body>
+    <h1 id="pgTitle">JavaScript Extra Credit</h1>
+    <hr />
+    <script>
+      // display the outputs of functions on the page
+      for (id = 1; id <= 5; id++) {
+        document.write("<p id='problem" + id + "'></p>");
+      }
+
+      // display numbers from 40 counting down to 10 by two's
+      function problem1() {
+        output = "";
+        for (i = 40; i >= 10; i -= 2) {
+          output += i;
+          if (i > 10) output += ", ";
+          else output += "";
+        }
+        document.getElementById("problem1").innerHTML =
+          "Problem 1: <br>" + output;
+      }
+
+      // get numbers from the user until the sum exceeds 20
+      function problem2() {
+        sum = 0;
+        while (sum <= 20) {
+          num = parseInt(prompt("Problem 2: enter a number to add to sum."));
+          if (!isNaN(num)) sum += num;
+          else alert("That's not a number! Please enter again."); // edge case
+        }
+        document.getElementById("problem2").innerHTML =
+          "Problem 2: <br>Sum: " + sum;
+      }
+
+      // get numbers from the user until the sum exceeds 20, store in array and
+      // display
+      function problem3() {
+        numbers = [];
+        sum = 0;
+        while (sum <= 20) {
+          input = parseInt(
+            prompt("Problem 3: enter a number to add to array.")
+          );
+          if (!isNaN(input)) {
+            numbers.push(input);
+            sum += input;
+          } else alert("That's not a number! Please enter again."); // edge case
+        }
+        document.getElementById("problem3").innerHTML =
+          "Problem 3: <br>Numbers entered: " + numbers.join(", ");
+      }
+
+      // create an associative array "songs" that matches song to artist and
+      // display it
+      function problem4() {
+        // using the object method
+        var songs = {
+          Pool: "Paramore",
+          Beaches: "beabadoobee",
+          Juna: "Clairo",
+          Roommates: "Malcom Todd",
+          Donchano: "Steve Lacy",
+        };
+
+        output = "Song list: <br>";
+        for (song in songs) {
+          output += song + " - " + songs[song] + "<br>";
+        }
+        document.getElementById("problem4").innerHTML =
+          "Problem 4: <br>" + output;
+      }
+
+      // ask user for name of a band and display songs only from that band
+      function problem5() {
+        var songs = {
+          Pool: "Paramore",
+          Beaches: "beabadoobee",
+          Juna: "Clairo",
+          Roommates: "Malcolm Todd",
+          Donchano: "Steve Lacy",
+        };
+
+        bandName = prompt("Problem 5: enter the name of a band/artist.");
+        output = "Song list: <br>";
+        for (song in songs) {
+          if (songs[song].toLowerCase() == bandName.toLowerCase())
+            output += song + " - " + songs[song] + "<br>";
+        }
+
+        // edge case: if no songs are found for the band
+        if (output == "Song list: <br>")
+          output += "No songs found for that band.";
+
+        document.getElementById("problem5").innerHTML =
+          "Problem 5: <br>" + output;
+      }
+
+      // calls all other problem functions
+      window.onload = function () {
+        problem1();
+        problem2();
+        problem3();
+        problem4();
+        problem5();
+      }; // end window.onload
+    </script>
+  </body>
+</html>
