@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment 4: Tic Tac Toe (Part 1)</title>
+    <!-- internal style sheet -->
+    <style type="text/css">
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* center vertically on page */
+        margin: 0;
+      }
+      /* applying style to each square */
+      #squares .square {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #000;
+        box-sizing: border-box;
+        display: inline-block;
+        /* move X's and O's to center to each square */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 40px;
+      }
+      /* change background of a square when you hover over it */
+      .square:hover {
+        background-color: #f5cac3;
+      }
+      /* get rid of bullet points */
+      ul#squares {
+        display: grid;
+        gap: 5px;
+        grid-template-rows: repeat(3, 100px);
+        grid-template-columns: repeat(3, 100px);
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- build a tic tac toe board -->
+    <ul id="squares" class="mysquares">
+      <div class="square">X</div>
+      <!-- hard-coded X's and O's -->
+      <div class="square">X</div>
+      <div class="square">O</div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </ul>
+  </body>
+</html>

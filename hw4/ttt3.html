@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment 4: Tic Tac Toe (Part 3)</title>
+    <!-- internal style sheet -->
+    <style type="text/css">
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* center vertically on page */
+        margin: 0;
+      }
+      h1 {
+        font-family: "Courier New", Courier, monospace;
+      }
+      /* applying style to each square */
+      .square {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #000;
+        box-sizing: border-box;
+        display: inline-block;
+        /* move X's and O's to center to each square */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 40px;
+        font-family: "Courier New", Courier, monospace;
+      }
+      /* change background of a square when you hover over it */
+      .square:hover {
+        background-color: #f5cac3;
+      }
+      /* get rid of bullet points */
+      ul#squares {
+        display: grid;
+        gap: 5px;
+        grid-template-rows: repeat(3, 100px);
+        grid-template-columns: repeat(3, 100px);
+        padding: 0;
+      }
+      .turnbox,
+      .winbox {
+        width: 100%;
+        max-width: 308px;
+        height: 50px;
+        border: 1px solid #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        font-family: "Courier New", Courier, monospace;
+        text-align: center;
+      }
+      #startbtn {
+        margin-top: 10px;
+        background-color: white;
+        border: 1px solid #000;
+        width: 100%;
+        max-width: fit-content;
+        font-size: 16px;
+        font-family: "Courier New", Courier, monospace;
+      }
+      #startbtn:hover {
+        background-color: #f5cac3;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tic Tac Toe!</h1>
+    <!-- section to indicate whose turn it is -->
+    <div class="turnbox"></div>
+    <!-- create grid of squares -->
+    <ul id="squares">
+      <script>
+        const NUM_SQUARES = 9;
+        for (i = 0; i < NUM_SQUARES; i++) {
+          id = "sq" + i;
+          document.write("<div class='square' id='" + id + "'></div>");
+        }
+
+        // randomly choose first player
+        let currentTurn = Math.random() < 0.5 ? "X" : "O";
+
+        window.onload = function () {
+          document.querySelector(".turnbox").innerHTML =
+            "Player " + currentTurn + "'s Turn";
+          for (let i = 0; i < NUM_SQUARES; i++) {
+            let square = document.getElementById("sq" + i);
+            square.addEventListener("click", function () {
+              clickSquare(i);
+            });
+          }
+          // reset the board when the button is clicked
+          btn = document.getElementById("startbtn");
+          btn.onclick = startButton;
+        };
+
+        // event handler for clicking on a square
+        function clickSquare(n) {
+          alert("Square " + n);
+          let square = document.getElementById("sq" + n);
+          if (square.innerHTML == "") {
+            square.innerHTML = currentTurn;
+            currentTurn = currentTurn === "X" ? "O" : "X";
+            document.querySelector(".turnbox").innerHTML =
+              "Player " + currentTurn + "'s Turn";
+          }
+        }
+
+        // clears the board, allowing squares to be filled
+        function startButton() {
+          for (let i = 0; i < NUM_SQUARES; i++) {
+            document.getElementById("sq" + i).innerHTML = "";
+          }
+        }
+      </script>
+    </ul>
+    <div class="winbox">To win, get 3 in a row, column, or diagonal!</div>
+    <input type="button" name="start-game" id="startbtn" value="Start Game" />
+  </body>
+</html>
