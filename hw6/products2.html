@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.min.js"
+      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        text-align: center;
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      #result {
+        text-align: left;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        margin: 20px;
+        gap: 20px;
+        width: 70%;
+      }
+      .drink {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 20px;
+      }
+      .drink:hover,
+      #loadData:hover {
+        background-color: lightgoldenrodyellow;
+        border: 1px solid rgb(155, 155, 127);
+      }
+      #loadData {
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 10px;
+        font-size: 16px;
+        padding: 10px 20px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      .description {
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>drink menu!</h1>
+    <input type="button" id="loadData" value="see all drinks" />
+    <div id="result"></div>
+    <script>
+      $(document).ready(function () {
+        $("#loadData").click(function () {
+          $.get("products.json", function (data) {
+            console.log(data);
+            let output = "";
+            data.products.forEach((drink) => {
+              output += `<div class="drink">
+                  <h3>${drink.name}</h3>
+                  <p class="description">${drink.description}</p>
+                  <p class="price"><strong>price:</strong> $${drink.price.toFixed(
+                    2
+                  )}</p>
+                  <p class="categories">categories: ${drink.categories.join(
+                    ", "
+                  )}</p>
+                </div>`;
+            });
+            document.getElementById("result").innerHTML = output;
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

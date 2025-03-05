@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href = "products.css" ?>
+<!-- this file represents a set of products -->
+<!-- name, description, price, category (more than 1) -->
+<!-- at least 8 products, 3 categories, 2 products more than 1 -->
+<products>
+    <drink>
+        <name>black milk tea</name>
+        <description>brewed black tea mixed with your choice of milk</description>
+        <price>6</price>
+        <categories>
+            <category>milk tea</category>
+        </categories>
+    </drink>
+
+    <drink>
+        <name>strawberry milk tea</name>
+        <description>black milk tea with strawberry puree</description>
+        <price>6.50</price>
+        <categories>
+            <category>milk tea</category>
+        </categories>
+    </drink>
+
+    <drink>
+        <name>passionfruit yogurt slush</name>
+        <description>passionfruit and yogurt flavored slushie</description>
+        <price>8</price>
+        <categories>
+            <category>slush</category>
+            <category>yogurt</category>
+        </categories>
+    </drink>
+
+    <drink>
+        <name>coffee milk tea</name>
+        <description>coffee mixed with earl grey milk tea</description>
+        <price>6.50</price>
+        <categories>
+            <category>milk tea</category>
+            <category>coffee</category>
+        </categories>
+    </drink>
+
+    <drink>
+        <name>vietnamese coffee</name>
+        <description>vietnamese drip coffee mixed with condensed milk</description>
+        <price>6.50</price>
+        <categories>
+            <category>coffee</category>
+        </categories>
+    </drink>
+
+    <drink>
+        <name>oolong tea</name>
+        <description>freshly brewed oolong tea</description>
+        <price>5.70</price>
+        <categories>
+            <category>brewed tea</category>
+        </categories>
+    </drink>
+
+    <drink>
+        <name>strawberry yogurt drink</name>
+        <description>yogurt flavored drink mixed with strawberry puree</description>
+        <price>6.50</price>
+        <categories>
+            <category>yogurt</category>
+        </categories>
+    </drink>
+
+    <drink>
+        <name>thai tea latte</name>
+        <description>freshly brewed thai tea mixed with your choice of milk</description>
+        <price>6</price>
+        <categories>
+            <category>milk tea</category>
+        </categories>
+    </drink>
+</products>
