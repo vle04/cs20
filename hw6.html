@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>homework 6: api fun</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 40px;
+      }
+      #container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: Calibri, "Trebuchet MS", sans-serif;
+      }
+      #container p {
+        max-width: 80%;
+        width: 100%;
+      }
+      #text {
+        margin-bottom: 20px;
+        margin-top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      ul {
+        margin: 0;
+      }
+      #results {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        width: 100%;
+        height: 100%;
+        justify-items: center;
+        gap: 20px;
+      }
+      .track {
+        display: flex;
+        flex-direction: column;
+        max-width: 250px;
+        min-height: 300px;
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid black;
+        border-radius: 10px;
+        text-align: center;
+      }
+      .track:hover {
+        transition: transform 0.2s ease-in-out;
+        transform: scale(1.05);
+      }
+      .track img {
+        width: 100%;
+        height: 100%;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        align-self: flex-end;
+      }
+      .track h3 {
+        margin-bottom: 0;
+        font-size: medium;
+      }
+      .track p {
+        margin-top: 0;
+        font-size: small;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      const apiUrl =
+        "https://spotify23.p.rapidapi.com/search/?q=LAUFEY&type=tracks&offset=0&limit=10";
+
+      const headers = {
+        "x-rapidapi-host": "spotify23.p.rapidapi.com",
+        "x-rapidapi-key": "7b4872aa81msh7659984f3c4f652p1a30d3jsn14d79d5d97fc",
+      };
+
+      // fetch and send get request
+      fetch(apiUrl, { method: "GET", headers: headers })
+        .then((res) => res.json()) // parse the reponse as a json
+        .then((data) => {
+          // handling data
+          console.log(data);
+          displayData(data.tracks.items);
+        })
+        .catch((error) => console.log(error));
+
+      // displays the results of fetch on to the page
+      function displayData(tracks) {
+        const resultDiv = document.getElementById("results");
+        if (!tracks.length) {
+          resultDiv.innerHTML = "<p>no tracks found.</p>";
+          return;
+        }
+        const trackList = tracks
+          .map(
+            (track) => `
+            <div class="track">
+                <h3>${track.data.name}</h3>
+                <p>By: ${track.data.artists.items
+                  .map((artist) => artist.profile.name)
+                  .join(", ")}</p>
+                <img src="${
+                  track.data.albumOfTrack.coverArt.sources[0].url
+                }" width="100">
+            </div>
+        `
+          )
+          .join("");
+        resultDiv.innerHTML = trackList;
+      }
+    </script>
+    <div id="container">
+      <h1>Laufey Tracks</h1>
+      <div id="text">
+        <p>
+          The reason I selected this API is because Spotify is something that I
+          use almost everyday, so I wanted to see what it would be like to try
+          and fetch data from their API. <br />
+          I found this API on
+          <a href="https://rapidapi.com/Glavier/api/spotify23">Rapid API.</a
+          ><br />
+          In the query string, I provided the follow parameters: <br />
+        </p>
+        <ul>
+          <li>
+            Search query: LAUFEY - because I wanted to search for data related
+            to the artist Laufey.
+          </li>
+          <li>
+            type: tracks - because I wanted to only get data regarding Laufey's
+            tracks.
+          </li>
+          <li>
+            offset: 0 - specifying where to start retrieving results from.
+          </li>
+          <li>limit: 10 - I only wanted 10 results from this request.</li>
+        </ul>
+        <p>
+          An example of when this API would be helpful is when someone
+          developing a website that integrates music data. For instance, a
+          playlist generation or a music review website would benefit a lot from
+          this API.
+        </p>
+      </div>
+      <div id="results"></div>
+    </div>
+  </body>
+</html>
