@@ -1,46 +1,53 @@
-var http = require('http');
-var fs = require('fs');
+const fs = require('fs');
+const readline = require('readline');
+const MongoClient = require('mongodb').MongoClient;
 
-http.createServer(function (req, res) {
-  const file = "companies.csv";
-  fs.readFile(file, 'utf8', function(err, txt) {
-    if (err) {
-        res.writeHead(500, {'Content-Type': "text/html"});
-        res.end("error reading the file");
-        return;
+// connection string
+const url = 'mongodb+srv://vle04:tohruai9894@cluster0.gfpfgzd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const filePath = 'companies.csv';
+
+async function run() {
+  try {
+    // wait to connect to db
+    const client = await MongoClient.connect(url);
+    var dbo = client.db("Stock");
+    var coll = dbo.collection('PublicCompanies');
+
+    // for testing, clear existing documents
+    await coll.deleteMany({});
+    console.log("cleared existing documents in PublicCompanies");
+
+    // const newData = {"title": "title", "ticker": "ticker", "price": 0.00};
+    // const result = await coll.insertOne(newData);
+
+    const fileStream = fs.createReadStream(filePath);
+    const rl = readline.createInterface({
+      input: fileStream,
+    });
+
+    let isFirstLine = true;
+    for await (const line of rl) {
+      if (isFirstLine) {
+        isFirstLine = false; // skip header line
+        continue;
+      }
+
+      const [name, ticker, price] = line.split(',');
+      const doc = {
+        name: name.trim(),
+        ticker: ticker.trim(),
+        price: parseFloat(price),
+      };
+
+      console.log(doc);
+      await coll.insertOne(doc);
     }
 
-    const rows = txt.trim().split('/\r?/n');
-    const headers = rows[0].split(',');
+    console.log("new document inserted");
+    await client.close();
+  } catch (err) {
+    console.error("error inserting document: ", err);
+  }
+}
 
-    let html = `<html><head><title>public companies</title></head><body>`;
-    html += `<h1>public companies</h1><table border="1"><tr>`;
-    //<th>name</th><th>ticker</th><th>price</th></tr>';
-
-    headers.forEach(h => html += `<th>${h}</th>`);
-    html += `</tr>`
-
-    // skip the header row
-    for (let i = 1; i < rows.length; i++) {
-        const cells = rows[i].split(",");
-        html += `<tr>`;
-        cells.forEach(cell => {
-            html += `<td>${cell.trim()}</td>`;
-        });
-        html += `</tr>`;
-    }
-
-    // rows.forEach(row => {
-    //     const [name, ticker, price] = row.split(',');
-    //     html += `<tr><td>${name}</td><td>${ticker}</td><td>${price}</td><tr>`;
-    // });
-
-    html += '</table></body></html>';
-
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write(html);
-    res.end();
-  });
-}).listen(8080);
-
-console.log("server is running on local host 8080");
+run();
