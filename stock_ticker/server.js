@@ -17,21 +17,21 @@ async function run() {
     await coll.deleteMany({});
     console.log("cleared existing documents in PublicCompanies");
 
-    // const newData = {"title": "title", "ticker": "ticker", "price": 0.00};
-    // const result = await coll.insertOne(newData);
-
+    // read in the file
     const fileStream = fs.createReadStream(filePath);
     const rl = readline.createInterface({
       input: fileStream,
     });
 
+    // skip the first header line
     let isFirstLine = true;
     for await (const line of rl) {
       if (isFirstLine) {
-        isFirstLine = false; // skip header line
+        isFirstLine = false;
         continue;
       }
 
+      // read in the data from the file and create a new document
       const [name, ticker, price] = line.split(',');
       const doc = {
         name: name.trim(),
@@ -39,6 +39,7 @@ async function run() {
         price: parseFloat(price),
       };
 
+      // print to the console and insert a new 
       console.log(doc);
       await coll.insertOne(doc);
     }
