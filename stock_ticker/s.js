@@ -1,13 +1,10 @@
 const fs = require('fs');
-const readline = require('readline');
 const MongoClient = require('mongodb').MongoClient;
 const http = require('http');
-const qs = require('querystring');
 const url = require('url');
 
 // connection string
 const urlString = 'mongodb+srv://vle04:tohruai9894@cluster0.gfpfgzd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
-const filePath = 'companies.csv';
 
 // only want mongodb to run when user submits the form
 http.createServer(async (req, res) => {
