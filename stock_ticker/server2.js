@@ -5,6 +5,7 @@ const url = require('url');
 
 // connection string
 const urlString = 'mongodb+srv://vle04:tohruai9894@cluster0.gfpfgzd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const PORT = process.env.PORT || 8080;
 
 // only want mongodb to run when user submits the form
 http.createServer(async (req, res) => {
@@ -65,4 +66,6 @@ http.createServer(async (req, res) => {
       console.error("error submitting form", err);
     }
   }
-}).listen(8080);
+}).listen(PORT, () => {
+  console.log("server running on port", PORT);
+});
